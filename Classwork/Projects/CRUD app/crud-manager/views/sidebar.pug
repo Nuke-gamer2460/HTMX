@@ -1,0 +1,17 @@
+ul.food-product-list
+  each foodProduct in foodProducts
+    li
+      a(
+        href=`/food-products/${foodProduct.id}`,
+        hx-get=`/food-products/${foodProduct.id}`,
+        hx-target='#content',
+        hx-push-url='true'
+      )= foodProduct.name
+
+div.actions
+  a(
+    href='/food-products/new',
+    hx-get='/food-products/new',
+    hx-target='#content',
+    hx-push-url='true'
+  ) New Food Product

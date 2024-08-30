@@ -1,0 +1,25 @@
+- isEditing = () => !(Object.keys(foodProduct).length === 0)
+
+h2= isEditing() ? "Edit Food Product" : "New Food Product"
+
+form(
+  action=isEditing() ? `/food-products/${foodProduct.id}?_method=PUT` : '/food-products',
+  method='POST',
+
+  hx-post=isEditing() ? false : '/food-products',
+  hx-put=isEditing() ? `/food-products/${foodProduct.id}` : false,
+  hx-target='#sidebar',
+  hx-push-url=isEditing() ? `/food-products/${foodProduct.id}` : false,
+  hx-on='after-request: if(event.detail.successful) this.reset()'
+)
+  label(for='name') Name:
+  input#name(type='text', name='name', required, value=foodProduct.name)
+
+  label(for='quantity') Quantity:
+  input#quantity(type='text', name='quantity', required, value=foodProduct.quantity || '')
+
+  label(for='ingredients') Ingredients (comma-separated):
+  input#ingredients(type='text', name='ingredients', required, value=foodProduct.ingredients ? foodProduct.ingredients.join(', ') : '')
+
+  div.actions
+    button(type='submit') Submit

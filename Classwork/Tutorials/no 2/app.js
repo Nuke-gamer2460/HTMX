@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
-const routes = require('./routes/index');
+const routes = require('../../Projects/CRUD app/crud-manager/routes/index');
 
 const app = express();
 
